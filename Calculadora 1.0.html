@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function sonumero(e){
+	key=e.keyCode || e.whitch;
+	
+	teclado= String.fromCharCode(key);
+	
+	numeros="0123456789";
+	
+	especiais="8-37-39-46";
+	
+	tecla_especial=false;
+	
+	for(var i in especiais){
+		if(key==especiais[i]){
+			tecla_especial=true;
+			}	
+	}
+	if(numeros.indexOf(teclado)==-1 && !tecla_especial){
+		return false;			
+	}
+}
+function calcular(oper) {
+	var valor1= document.calc.valor1.value;
+	var valor2= document.calc.valor2.value;
+	
+if(oper== 'escolha'){
+	alert ("escolha uma operação");
+	}
+else
+	if(valor1== ''||valor2 ==''){
+		alert("digite um numero");
+	}
+else
+	if(oper=='somar'){
+		res= parseFloat (valor1) + parseFloat (valor2);
+	}
+else
+	if( oper== 'subtrair'){
+		res = valor1 - valor2;
+	}
+else
+	if(oper=='multiplicar'){
+		res=valor1 * valor2;
+	}
+document.calc.res.value = res;
+}
+
+function limpar(){
+	valor1 = document.calc.valor1.value;
+	valor2 = document.calc.valor2.value;
+	res = document.calc.res.value;
+	valor1 = '';
+	valor2 = '';
+	res = '';
+	document.calc.valor1.value=valor1;
+	document.calc.valor2.value = valor2;
+	document.calc.res.value = res;
+}
+</script>
+</head>
+
+<body>
+
+<form name="calc" method="post" action="">
+
+	<legend>Calculadora</legend>
+	<input type="text" name="valor1" id="valor1" onkeypress="return sonumero(event)" size="10"/>
+	
+	<select name="oper" id="oper">
+	<option value="escolha">escolha a operação</option>
+	<option value="somar">somar</option>
+	<option value="subtrair">subtrair</option>
+	<option value="multiplicar">multiplicar</option>
+	<option valeu="dividir">dividir</option>
+	</select>
+	
+	<input type="text" name="valor2" id="valor2" onkeypress="return sonumero(event)" size="10"/>
+	<label for="result">=</label>
+	<input type="text" name="res" id="res" size="10"
+</br>
+	<input type="button" value="calcular" onclick="calcular(document.calc.oper.value)"/>
+	<input type="button" value="limpar" onclick="limpar()"/>
+
+
+</form>
+</body>
+</hmtl>
+	
+	
